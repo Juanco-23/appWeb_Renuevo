@@ -1,0 +1,33 @@
+I1116 20:39:13.912268    9664 load.go:31] Reloading schema and connectors...
+I1116 20:39:13.945088    9664 control.go:90] [projects/emulator/locations/emulator/services/appwebrenuevo adaf] UpdateResources(): done
+Main schema: sources: schema/schema.gql [1992B] 
+Connector "example": sources: example/mutations.gql [1243B] example/queries.gql [1801B] 
+I1116 20:39:13.957523    9664 codegen.go:102] [connector "example" javascriptSdk] Generating sources into "C:\\Users\\jdieg\\Documents\\Universidad\\Practicas_II\\PagWeb_Renuevo\\app_web_renuevo\\src\\dataconnect-generated"
+I1116 20:39:13.967322    9664 collector.go:107] schema extensions wrote into "C:\\Users\\jdieg\\Documents\\Universidad\\Practicas_II\\PagWeb_Renuevo\\app_web_renuevo\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [94538B] main\implicit.gql [1261B] main\input.gql [29309B] main\relation.gql [14318B] main\query.gql [5099B] main\mutation.gql [13679B] 
+I1116 20:39:13.972009    9664 collector.go:107] connector "example" javascriptSdk wrote into "C:\\Users\\jdieg\\Documents\\Universidad\\Practicas_II\\PagWeb_Renuevo\\app_web_renuevo\\src\\dataconnect-generated"
+Generated sources: index.d.ts [8408B] index.cjs.js [5910B] package.json [853B] README.md [41217B] .guides/usage.md [3489B] react\package.json [460B] react\esm\package.json [17B] react\index.cjs.js [3439B] react\README.md [48281B] .guides/setup.md [1682B] esm\package.json [17B] react\index.d.ts [3961B] react\esm\index.esm.js [3269B] esm\index.esm.js [5366B] .guides/config.json [236B] 
+I1116 20:39:13.978311    9664 installsdk.go:86] Running command: C:\Users\jdieg\AppData\Roaming\npm\pnpm.cmd link src\dataconnect-generated
+E1116 20:39:14.258054    9664 installsdk.go:88] Failed to install package: exit status 1
+I1116 20:39:14.258054    9664 load.go:109] Finished reloading
+I1116 20:39:14.258561    9664 dev.go:103] Listening on address (HTTP + gRPC): 127.0.0.1:9399
+I1116 20:39:14.259084    9664 dev.go:103] Listening on address (HTTP + gRPC): [::1]:9399
+I1116 20:39:18.858707    9664 migrate.go:24] Running migration SQL:
+Step 1: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+Step 2: CREATE TABLE "public"."movie" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "genre" text NULL, "image_url" text NOT NULL, "title" text NOT NULL, PRIMARY KEY ("id"))
+Step 3: CREATE TABLE "public"."user" ("id" text NOT NULL, "username" character varying(50) NOT NULL, PRIMARY KEY ("id"))
+Step 4: CREATE TABLE "public"."Reviews" ("movie_id" uuid NOT NULL, "user_id" text NOT NULL, "rating" integer NULL, "review_date" date NOT NULL, "review_text" text NULL, PRIMARY KEY ("movie_id", "user_id"), CONSTRAINT "Reviews_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "public"."movie" ("id") ON DELETE CASCADE, CONSTRAINT "Reviews_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "public"."user" ("id") ON DELETE CASCADE)
+Step 5: CREATE INDEX "Reviews_movieId_idx" ON "public"."Reviews" ("movie_id")
+Step 6: CREATE INDEX "Reviews_userId_idx" ON "public"."Reviews" ("user_id")
+Step 7: CREATE TABLE "public"."movie_metadata" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "movie_id" uuid NOT NULL, "description" text NULL, "rating" double precision NULL, "release_year" integer NULL, PRIMARY KEY ("id"), CONSTRAINT "movie_metadata_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "public"."movie" ("id") ON DELETE CASCADE)
+Step 8: CREATE INDEX "movie_metadata_movieId_idx" ON "public"."movie_metadata" ("movie_id")
+Step 9: CREATE UNIQUE INDEX "movie_metadata_movieId_uidx" ON "public"."movie_metadata" ("movie_id")
+I1116 20:39:18.962612    9664 control.go:90] [projects/emulator/locations/emulator/services/appwebrenuevo 3e89] UpdateResources(): done
+Main schema: sources: schema/schema.gql [1992B] 
+Connector "example": sources: example/mutations.gql [1243B] example/queries.gql [1801B] 
+I1116 20:39:18.967944    9664 configure_emulator.go:21] ConfigureEmulator successed
+Request: service_id: "appwebrenuevo"
+connection_string: "postgres://127.0.0.1:5432/fdcdb?sslmode=disable"
+database: "fdcdb"
+
+Response: 
